@@ -16,7 +16,7 @@ cat>v2ray/config.json<<EOF
 			"settings": {
 				"clients": [
 					{
-						"id": "ssssssss-ssss-ssss-ssss-sssssssssssss",
+						"id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
 						"alterId": 0
 					}
 				]
@@ -48,4 +48,4 @@ sleep 3
 argo=$(cat argo.log | grep trycloudflare.com | awk 'NR==2{print}' | awk -F// '{print $2}' | awk '{print $1}')
 clear
 echo vmess链接已经生成,IP地址可替换为CF优选IP
-echo 'vmess://'$(echo '{"add":"42.186.175.8","aid":"0","host":"'$argo'","id":"ssssssss-ssss-ssss-ssss-sssssssssssss","net":"ws","path":"","port":"443","ps":"argo","tls":"tls","type":"none","v":"2"}' | base64 -w 0)
+echo 'vmess://'$(echo '{"add":"42.186.175.8","aid":"0","host":"'$argo'","id":"ffffffff-ffff-ffff-ffff-ffffffffffff","net":"ws","path":"","port":"443","ps":"argo","tls":"tls","type":"none","v":"2"}' | base64 -w 0)
