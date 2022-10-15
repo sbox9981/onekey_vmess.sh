@@ -39,13 +39,13 @@ cat>v2ray/config.json<<EOF
 EOF
 kill -9 $(ps -ef | grep v2ray | grep -v grep | awk '{print $2}')
 kill -9 $(ps -ef | grep cloudflared-linux-amd64 | grep -v grep | awk '{print $2}')
-./v2ray/v2ray &
-./cloudflared-linux-amd64 tunnel --url http://localhost:8888 --edge-ip-version 6 --no-autoupdate>argo.log 2>&1 &
+./v2ray/v2ray run &
+./cloudflared-linux-amd64 tunnel --url http://localhost:8888 --no-autoupdate --protocol h2mux>argo.log 2>&1 &
 sleep 2
 clear
-echo 等到cloudflare argo生成地址
-sleep 3
+echo 等待cloudflare argo生成地址
+sleep 10
 argo=$(cat argo.log | grep trycloudflare.com | awk 'NR==2{print}' | awk -F// '{print $2}' | awk '{print $1}')
 clear
 echo vmess链接已经生成,IP地址可替换为CF优选IP
-echo 'vmess://'$(echo '{"add":"42.186.175.8","aid":"0","host":"'$argo'","id":"ffffffff-ffff-ffff-ffff-ffffffffffff","net":"ws","path":"","port":"443","ps":"argo","tls":"tls","type":"none","v":"2"}' | base64 -w 0)
+echo 'vmess://'$(echo '{"add":"42.194.173.78","aid":"0","host":"'$argo'","id":"ffffffff-ffff-ffff-ffff-ffffffffffff","net":"ws","path":"","port":"443","ps":"argo","tls":"tls","type":"none","v":"2"}' | base64 -w 0)
